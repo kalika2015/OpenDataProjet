@@ -1,0 +1,8 @@
+<div *ngFor="let region of regions">
+  <p (click)="carte(region.latitude,region.longitude)">{{region.nom}}</p>
+</div>
+
+<br><br><br>
+<div id="map">
+
+</div>
