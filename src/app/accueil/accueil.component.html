@@ -51,13 +51,12 @@
     <div class="map__list col-md-3 text-center">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let region of regions">
-          <a href="#map" id="{{region.listId}}" (click)="carte(region.latitude,region.longitude)">{{region.nom}}</a>
+          <a href="#map" id="{{region.listId}}" (click)="carte(region.latitude,region.longitude, region.nom)">{{region.nom}}</a>
         </li>
       </ul>
     </div>
   </div>
 </div>
-
 
 <div id="map">
 

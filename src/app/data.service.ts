@@ -20,4 +20,14 @@ export class DataService {
         });
     });
   }
+  getSite() {
+    const url = `${this.baseUrl}sites.json`;
+    return new Promise(resolve => {
+      this.http.get(url).subscribe(data => {
+        resolve(data);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 }
