@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
-import {count} from 'rxjs/internal/operators';
 
 // declare variable
 declare let L;
@@ -12,8 +11,11 @@ declare let L;
 })
 export class ViewComponent implements OnInit{
   regions: any;
+  sites: any;
+  id: any;
   constructor(private dataService: DataService) {
     this.getRegion();
+    this.getSite();
   }
   getRegion() {
     this.dataService.getRegion()
@@ -23,7 +25,9 @@ export class ViewComponent implements OnInit{
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   carte(lat, long) {
     const map = L.map('map').setView([14.73, -17.33], 12);
@@ -38,4 +42,15 @@ export class ViewComponent implements OnInit{
       fillOpacity: 0.15
     }).addTo(map);
   }
+
+  getSite() {
+    this.dataService.getSite()
+      .then(data => {
+        this.sites = data;
+        console.log(this.sites);
+      });
+  }
 }
+
+
+
