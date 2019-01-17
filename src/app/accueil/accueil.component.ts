@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
+import {Router} from '@angular/router';
 
 // declare variable
 declare let L;
@@ -13,7 +14,7 @@ declare let L;
 export class AccueilComponent implements OnInit {
 
   regions: any;
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private _route: Router) {
     this.getRegion();
   }
   getRegion() {
@@ -24,7 +25,7 @@ export class AccueilComponent implements OnInit {
       });
   }
   ngOnInit() {}
-  onSelect() {
-
+  onSelect(id, lat, long) {
+    this._route.navigate(['/region', id, lat, long]);
   }
 }

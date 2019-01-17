@@ -19,6 +19,10 @@
 
   <script>
     $(document).ready(function() {
+      $( "#close" ).click(function() {
+        $(".modal1").css('display','none');
+      });
+
       var map = document.querySelector('#map');
       var paths = document.querySelectorAll('.map__image a');
       var links = document.querySelectorAll('.map__list a');
