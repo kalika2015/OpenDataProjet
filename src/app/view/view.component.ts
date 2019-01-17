@@ -18,15 +18,22 @@ export class ViewComponent implements OnInit {
   constructor(private dataService: DataService, private  activateRoote: ActivatedRoute) {
     this.getSite();
   }
-  getSite() {
-    this.dataService.getSite()
-      .then(data => {
-        this.sites = data;
-        console.log(this.sites);
-      });
-  }
+  getSite() {}
 
   ngOnInit() {
+
+    this.dataService.getSite()
+      .then(data => {
+        Array.of(data).forEach((item, index) => {
+          for (let i = 0; i < item.length; i++) {
+            const img = item[i]['image'];
+            const marker = new L.Marker(new L.LatLng(item[i]['latitude'], item[i]['longitude']));
+            marker.addTo(map).bindPopup('<h4 style="font-family: Script MT Bold">' + item[i]['nom'] + '</h4><br/><p style="font-size: medium; font-family: Script MT Bold">' + item[i]['description'] + '</p><br/> <img class="card-img" src="https://alious.promo-21.codeur.online/senegal-patrimoine/public/uploads/images/site/' + img + '">');
+          }
+        });
+      });
+
+
     this.activateRoote.params.subscribe(params => {
       if (typeof params['id'] !== undefined) {
         this.id = params['id'];
@@ -53,24 +60,6 @@ export class ViewComponent implements OnInit {
       fillColor: 'red',
       fillOpacity: 0.15
     }).addTo(map);
-
-
-
-    const myIcon = L.icon({
-      iconUrl: 'http://iconshow.me/media/images/Application/Map-Markers-icons/png/48/MapMarker_Flag3_Right_Pink.png'
-    });
-    L.marker([this.lat, this.long], {icon: myIcon}).addTo(map);
-
-
-    // ajouter un marqueur
-    const marker = new L.Marker(new L.LatLng(this.lat, this.long));
-    marker.addTo(map).bindPopup('<b>' + this.id + '</b><br />').openPopup();
-
-    for (const site of this.sites) {
-      const marker = new L.Marker(new L.LatLng(site.latitude, site.longitude));
-      marker.addTo(map).bindPopup('<b>' + site.description + '</b><br />').openPopup();
-    }
-
   }
 }
 
