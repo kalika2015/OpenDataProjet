@@ -25,10 +25,10 @@ export class ViewComponent implements OnInit {
     this.dataService.getSite()
       .then(data => {
         Array.of(data).forEach((item, index) => {
-          for (let i = 0; i < item.length; i++) {
+          for (let i = 0; i < <any>item.length; i++) {
             const img = item[i]['image'];
             const marker = new L.Marker(new L.LatLng(item[i]['latitude'], item[i]['longitude']));
-            marker.addTo(map).bindPopup('<h4 style="font-family: Script MT Bold">' + item[i]['nom'] + '</h4><br/><p style="font-size: medium; font-family: Script MT Bold">' + item[i]['description'] + '</p><br/> <img class="card-img" src="https://alious.promo-21.codeur.online/senegal-patrimoine/public/uploads/images/site/' + img + '">');
+            marker.addTo(map).bindPopup('<h4 style="font-family: Script MT Bold">' + item[i]['nom'] + '<br><br> <img class="card-img" src="https://alious.promo-21.codeur.online/senegal-patrimoine/public/uploads/images/site/' + img + '"></h4><p style="font-size: medium; font-family: Script MT Bold">' + item[i]['description'] + '</p>');
           }
         });
       });

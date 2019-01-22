@@ -1,7 +1,7 @@
 
 .map{
   overflow: hidden;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 .map__image{}
 
@@ -17,9 +17,7 @@
   cursor: pointer;
 }
 
-.map__list{
-
-}
+.map__list{}
 
 .map__list a{
   color: inherit;
