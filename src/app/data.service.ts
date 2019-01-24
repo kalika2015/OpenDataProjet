@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DataService {
 
-  private baseUrl = 'http://alious.promo-21.codeur.online/senegal-patrimoine/public/api/';
+  private baseUrl = 'https://alious.promo-21.codeur.online/senegal-patrimoine/public/api/';
   constructor(public http: HttpClient) {
 
   }
